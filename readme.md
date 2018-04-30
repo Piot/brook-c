@@ -2,6 +2,8 @@
 
 Very basic octet streams. Writes and reads in network order (big endian).
 
+For a Go version, check out [Brook-Go](https://github.com/Piot/brook-go), and .Net-version [Brook-Dotnet](https://github.com/Piot/brook-dotnet).
+
 ##### Usage
 
 ###### Writing
