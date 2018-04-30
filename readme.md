@@ -22,6 +22,8 @@ brook_out_stream_flush(&stream);
 ```c
 void example_read(uint8_t* buf, size_t size)
 {
+    brook_in_stream stream;
+
     brook_in_stream_init(&stream, buf, size);
     uint16_t answer = brook_in_stream_read_uint16(&stream);
 }
