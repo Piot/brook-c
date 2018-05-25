@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include <arpa/inet.h>
 #include <brook/brook_in_stream.h>
-#include <tyran/tyran_log.h>
+#include <clog/clog.h>
 
 void brook_in_stream_init(brook_in_stream* self, const uint8_t* octets, size_t octet_count)
 {
@@ -36,35 +36,36 @@ void brook_in_stream_init(brook_in_stream* self, const uint8_t* octets, size_t o
 
 uint8_t brook_in_stream_read_uint8(brook_in_stream* self)
 {
-	if (self->p > self->last_p) {
-		TYRAN_ERROR("Problem");
+	if (self->p + 1 > self->last_p) {
+		CLOG_ERROR("Problem read_uint8");
 		return 0;
 	}
-
 	return *self->p++;
 }
 
 uint16_t brook_in_stream_read_uint16(brook_in_stream* self)
 {
 	if (self->p + 2 > self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem read_uint16");
 		return 0;
 	}
 
 	uint16_t v = ntohs(*(uint16_t*) self->p);
 	self->p += 2;
+
 	return v;
 }
 
 uint32_t brook_in_stream_read_uint32(brook_in_stream* self)
 {
 	if (self->p + 4 > self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem read_uint32");
 		return 0;
 	}
 
 	uint32_t v = ntohl(*(uint32_t*) self->p);
 	self->p += 4;
+
 	return v;
 }
 
@@ -78,7 +79,6 @@ size_t brook_in_stream_octets_read(const brook_in_stream* self)
 	return (self->p - self->octets);
 }
 
-
 void brook_in_stream_read_internal_pointer(brook_in_stream* self, const uint8_t** p, size_t* octets_left)
 {
 	*p = self->p;
@@ -88,7 +88,7 @@ void brook_in_stream_read_internal_pointer(brook_in_stream* self, const uint8_t*
 void brook_in_stream_read_skip(brook_in_stream* self, size_t octet_count)
 {
 	if (self->p + octet_count > self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem read_skip");
 		return;
 	}
 

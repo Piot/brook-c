@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include <arpa/inet.h>
 #include <brook/brook_out_stream.h>
-#include <tyran/tyran_log.h>
+#include <clog/clog.h>
 
 void brook_out_stream_init(brook_out_stream* self, uint8_t* octets, size_t octet_count)
 {
@@ -36,7 +36,7 @@ void brook_out_stream_init(brook_out_stream* self, uint8_t* octets, size_t octet
 void brook_out_stream_write_uint8(brook_out_stream* self, uint8_t v)
 {
 	if (self->p >= self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem");
 		return;
 	}
 
@@ -46,7 +46,7 @@ void brook_out_stream_write_uint8(brook_out_stream* self, uint8_t v)
 void brook_out_stream_write_uint16(brook_out_stream* self, uint16_t v)
 {
 	if (self->p + 2 >= self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem");
 		return;
 	}
 
@@ -57,7 +57,7 @@ void brook_out_stream_write_uint16(brook_out_stream* self, uint16_t v)
 void brook_out_stream_write_uint32(brook_out_stream* self, uint32_t v)
 {
 	if (self->p + 4 >= self->last_p) {
-		TYRAN_ERROR("Problem");
+		CLOG_ERROR("Problem");
 		return;
 	}
 
@@ -68,10 +68,10 @@ void brook_out_stream_write_uint32(brook_out_stream* self, uint32_t v)
 void brook_out_stream_write_octets(brook_out_stream* self, const uint8_t* octets, size_t octet_count)
 {
 	if (self->p + octet_count > self->last_p) {
-		TYRAN_ERROR("Wrote too far");
+		CLOG_ERROR("Wrote too far");
 		return;
 	}
-	tyran_memcpy_octets(self->p, octets, octet_count);
+	tc_memcpy_octets(self->p, octets, octet_count);
 	self->p += octet_count;
 }
 
