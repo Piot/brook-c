@@ -1,0 +1,17 @@
+{
+  "name": "brook-c",
+  "version": "0.0.1",
+  "repo": "piot/brook-c",
+  "description": "Octet and bitstreams for c99",
+  "keywords": ["stream", "bitstream"],
+  "license": "MIT",
+  "src": [
+      "src/include/brook/brook_in_stream.h",
+      "src/include/brook/brook_out_stream.h",
+      "src/lib/brook_in_stream.c",
+      "src/lib/brook_out_stream.c"
+  ],
+  "dependencies" : {
+      "piot/clog" : "*"
+  }
+}
