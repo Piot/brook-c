@@ -1,6 +1,6 @@
 {
-  "name": "brook-c",
-  "version": "0.0.1",
+  "name": "brook",
+  "version": "0.0.2",
   "repo": "piot/brook-c",
   "description": "Octet and bitstreams for c99",
   "keywords": ["stream", "bitstream"],
